@@ -1,29 +1,29 @@
 package com.example.tms.Entity.Response;
 
-public class ResponseEntity<T> {
+public class CustomResponseEntity<T> {
 
     private String message;
     private T data;
     private int code;
 
-    public ResponseEntity(ResponseCode ResponseCode, T data) {
+    public CustomResponseEntity(CustomResponseCode ResponseCode, T data) {
         this.message = ResponseCode.getMessage();
         this.data = data;
         this.code = ResponseCode.getCode();
     }
 
-    public ResponseEntity(String message, T data, int code) {
+    public CustomResponseEntity(String message, T data, int code) {
         this.message = message;
         this.data = data;
         this.code = code;
     }
 
-    public ResponseEntity(ResponseCode ResponseCode) {
+    public CustomResponseEntity(CustomResponseCode ResponseCode) {
         this.message = ResponseCode.getMessage();
         this.code = ResponseCode.getCode();
     }
 
-    public ResponseEntity(String message, T data) {
+    public CustomResponseEntity(String message, T data) {
         this.message = message;
         this.data = data;
     }

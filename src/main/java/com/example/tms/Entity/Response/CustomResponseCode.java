@@ -1,6 +1,6 @@
 package com.example.tms.Entity.Response;
 
-public enum ResponseCode {
+public enum CustomResponseCode {
 
     SUCCESS(200, "Success"),
     NOT_FOUND(404, "Content doesn't exist");
@@ -8,7 +8,7 @@ public enum ResponseCode {
     private int code;
     private String message;
 
-    ResponseCode(int code, String message) {
+    CustomResponseCode(int code, String message) {
         this.code = code;
         this.message = message;
     }

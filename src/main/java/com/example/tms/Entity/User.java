@@ -2,9 +2,11 @@ package com.example.tms.Entity;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User implements UserDetails {
@@ -17,6 +19,25 @@ public class User implements UserDetails {
     private String username;
     @Column(nullable = false)
     private String password;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Role role;
+
+    public User() {
+    }
+
+    public User(long id, String username, String password, Role role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     public long getId() {
         return id;
@@ -36,7 +57,8 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role.getName());
+        return List.of(authority);
     }
 
     @Override
@@ -68,4 +90,13 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
 }
