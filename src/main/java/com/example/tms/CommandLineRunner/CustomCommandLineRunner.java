@@ -9,6 +9,7 @@ import com.example.tms.Repository.PrivilegeRepository;
 import com.example.tms.Repository.RolePrivilegeRepository;
 import com.example.tms.Repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -19,12 +20,14 @@ public class CustomCommandLineRunner implements CommandLineRunner {
     private final UserRepository userRepository;
     private final PrivilegeRepository privilegeRepository;
     private final RolePrivilegeRepository rolePrivilegeRepository;
+    private final PasswordEncoder passwordEncoder;
     private final SocketIOServer server;
 
-    public CustomCommandLineRunner(UserRepository userRepository, PrivilegeRepository privilegeRepository, RolePrivilegeRepository rolePrivilegeRepository, SocketIOServer server) {
+    public CustomCommandLineRunner(UserRepository userRepository, PrivilegeRepository privilegeRepository, RolePrivilegeRepository rolePrivilegeRepository, PasswordEncoder passwordEncoder, SocketIOServer server) {
         this.userRepository = userRepository;
         this.privilegeRepository = privilegeRepository;
         this.rolePrivilegeRepository = rolePrivilegeRepository;
+        this.passwordEncoder = passwordEncoder;
         this.server = server;
     }
 
@@ -38,7 +41,7 @@ public class CustomCommandLineRunner implements CommandLineRunner {
             Role role = new Role("admin");
             Privilege privilege = new Privilege("admin", "have all authorities");
             RolePrivilege rolePrivilege = new RolePrivilege(role, privilege);
-            User user1 = new User("admin", "admin", role);
+            User user1 = new User("admin", passwordEncoder.encode( "admin"), role);
             userRepository.save(user1);
             privilegeRepository.save(privilege);
             rolePrivilegeRepository.save(rolePrivilege);
