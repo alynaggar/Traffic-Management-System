@@ -1,14 +1,14 @@
 package com.example.tms.WebSocket;
 
-public class Message {
+public class WebsocketMessage {
     private MessageType type;
     private String message;
     private String room;
 
-    public Message() {
+    public WebsocketMessage() {
     }
 
-    public Message(MessageType type, String message) {
+    public WebsocketMessage(MessageType type, String message) {
         this.type = type;
         this.message = message;
     }

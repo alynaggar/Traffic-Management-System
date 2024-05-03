@@ -1,8 +1,6 @@
 package com.example.tms.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Camera {
@@ -12,15 +10,22 @@ public class Camera {
 
     private String name;
 
+    private String url;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     @ManyToOne
     private Location location;
 
     public Camera() {
     }
 
-    public Camera(long id, String name, Location location) {
+    public Camera(long id, String name, String url, Status status, Location location) {
         this.id = id;
         this.name = name;
+        this.url = url;
+        this.status = status;
         this.location = location;
     }
 
@@ -46,5 +51,21 @@ public class Camera {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

@@ -11,7 +11,7 @@ public class SocketService {
                 SocketIOClient client : senderClient.getNamespace().getRoomOperations(room).getClients()) {
             if (!client.getSessionId().equals(senderClient.getSessionId())) {
                 client.sendEvent(eventName,
-                        new Message(MessageType.SERVER, message));
+                        new WebsocketMessage(MessageType.SERVER, message));
             }
         }
     }

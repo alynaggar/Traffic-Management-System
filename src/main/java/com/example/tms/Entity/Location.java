@@ -13,7 +13,8 @@ public class Location {
 
     private String name;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     private double longitude;
 
@@ -28,7 +29,7 @@ public class Location {
     public Location() {
     }
 
-    public Location(long id, String name, String status, double longitude, double latitude, List<Camera> cameras, List<TrafficLight> trafficLights) {
+    public Location(long id, String name, Status status, double longitude, double latitude, List<Camera> cameras, List<TrafficLight> trafficLights) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -54,11 +55,11 @@ public class Location {
         this.name = name;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

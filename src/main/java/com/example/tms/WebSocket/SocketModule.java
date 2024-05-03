@@ -20,10 +20,10 @@ public class SocketModule {
         this.socketService = socketService;
         server.addConnectListener(onConnected());
         server.addDisconnectListener(onDisconnected());
-        server.addEventListener("send_message", Message.class, onChatReceived());
+        server.addEventListener("send_message", WebsocketMessage.class, onChatReceived());
     }
 
-    private DataListener<Message> onChatReceived() {
+    private DataListener<WebsocketMessage> onChatReceived() {
         return (senderClient, data, ackSender) -> {
             log.info(data.toString());
             socketService.sendMessage(data.getRoom(),"get_message", senderClient, data.getMessage());
