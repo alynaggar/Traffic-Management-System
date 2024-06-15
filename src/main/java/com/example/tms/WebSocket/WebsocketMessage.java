@@ -2,13 +2,13 @@ package com.example.tms.WebSocket;
 
 public class WebsocketMessage {
     private MessageType type;
-    private String message;
+    private Object message;
     private String room;
 
     public WebsocketMessage() {
     }
 
-    public WebsocketMessage(MessageType type, String message) {
+    public WebsocketMessage(MessageType type, Object message) {
         this.type = type;
         this.message = message;
     }
@@ -21,11 +21,11 @@ public class WebsocketMessage {
         this.type = type;
     }
 
-    public String getMessage() {
+    public Object getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(Object message) {
         this.message = message;
     }
 

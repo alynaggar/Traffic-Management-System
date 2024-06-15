@@ -1,11 +1,9 @@
 package com.example.tms.Controller;
 
+import com.example.tms.Entity.Camera;
 import com.example.tms.Entity.Response.CustomResponseEntity;
 import com.example.tms.Service.CameraService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/camera")
@@ -25,5 +23,10 @@ public class CameraController {
     @GetMapping("/all")
     public CustomResponseEntity<?> getAllCameras(){
         return cameraService.getAllCameras();
+    }
+
+    @PostMapping("/create")
+    public CustomResponseEntity<?> createCamera(@RequestBody Camera camera){
+        return cameraService.createCamera(camera);
     }
 }

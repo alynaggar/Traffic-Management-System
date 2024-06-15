@@ -4,12 +4,12 @@ public class UserDTO {
 
     private String username;
     private String password;
-    private long role;
+    private String roleName;
 
-    public UserDTO(String username, String password, long role) {
+    public UserDTO(String username, String password, String roleName) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.roleName = roleName;
     }
 
     public String getUsername() {
@@ -28,11 +28,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public long getRole() {
-        return role;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole(long role) {
-        this.role = role;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

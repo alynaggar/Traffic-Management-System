@@ -14,7 +14,7 @@ public class Location {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.UP;
 
     private double longitude;
 
@@ -23,20 +23,21 @@ public class Location {
     @OneToMany(mappedBy = "location")
     private List<Camera> cameras;
 
-    @OneToMany(mappedBy = "location")
-    private List<TrafficLight> trafficLights;
-
     public Location() {
     }
 
-    public Location(long id, String name, Status status, double longitude, double latitude, List<Camera> cameras, List<TrafficLight> trafficLights) {
+    public Location(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Location(long id, String name, Status status, double longitude, double latitude, List<Camera> cameras) {
         this.id = id;
         this.name = name;
         this.status = status;
         this.longitude = longitude;
         this.latitude = latitude;
         this.cameras = cameras;
-        this.trafficLights = trafficLights;
     }
 
     public long getId() {
@@ -85,13 +86,5 @@ public class Location {
 
     public void setCameras(List<Camera> cameras) {
         this.cameras = cameras;
-    }
-
-    public List<TrafficLight> getTrafficLights() {
-        return trafficLights;
-    }
-
-    public void setTrafficLights(List<TrafficLight> trafficLights) {
-        this.trafficLights = trafficLights;
     }
 }

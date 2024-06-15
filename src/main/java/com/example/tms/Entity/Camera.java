@@ -1,5 +1,6 @@
 package com.example.tms.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,19 +13,30 @@ public class Camera {
 
     private String url;
 
+    @Transient
+    private String locationName;
+
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.UP;
 
     @ManyToOne
+    @JsonIgnore
     private Location location;
 
     public Camera() {
     }
 
-    public Camera(long id, String name, String url, Status status, Location location) {
+    public Camera(long id, String name, String url) {
         this.id = id;
         this.name = name;
         this.url = url;
+    }
+
+    public Camera(long id, String name, String url, String locationName, Status status, Location location) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.locationName = locationName;
         this.status = status;
         this.location = location;
     }
@@ -67,5 +79,13 @@ public class Camera {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }

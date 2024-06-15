@@ -18,18 +18,13 @@ public class Role {
     @JsonIgnore
     private List<User> user;
 
-    @OneToMany(mappedBy = "role")
-    @JsonIgnore
-    private List<RolePrivilege> rolePrivileges;
-
     public Role() {
     }
 
-    public Role(long id, String name, List<User> user, List<RolePrivilege> rolePrivileges) {
+    public Role(long id, String name, List<User> user) {
         this.id = id;
         this.name = name;
         this.user = user;
-        this.rolePrivileges = rolePrivileges;
     }
 
     public Role(String name) {
@@ -60,11 +55,4 @@ public class Role {
         this.user = user;
     }
 
-    public List<RolePrivilege> getRolePrivileges() {
-        return rolePrivileges;
-    }
-
-    public void setRolePrivileges(List<RolePrivilege> rolePrivileges) {
-        this.rolePrivileges = rolePrivileges;
-    }
 }

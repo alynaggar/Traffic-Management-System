@@ -21,12 +21,36 @@ public class SocketModule {
         server.addConnectListener(onConnected());
         server.addDisconnectListener(onDisconnected());
         server.addEventListener("send_message", WebsocketMessage.class, onChatReceived());
+        server.addEventListener("send_traffic", WebsocketMessage.class, onTrafficReceived());
+        server.addEventListener("send_emergency", WebsocketMessage.class, onEmergencyReceived());
+        server.addEventListener("send_accident", WebsocketMessage.class, onAccidentReceived());
     }
 
     private DataListener<WebsocketMessage> onChatReceived() {
         return (senderClient, data, ackSender) -> {
-            log.info(data.toString());
-            socketService.sendMessage(data.getRoom(),"get_message", senderClient, data.getMessage());
+            log.info("Received chat message: {}", data);
+            socketService.sendMessage(data.getRoom(), "get_message", senderClient, data.getMessage());
+        };
+    }
+
+    private DataListener<WebsocketMessage> onTrafficReceived() {
+        return (senderClient, data, ackSender) -> {
+            log.info("Received traffic message: {}", data);
+            socketService.sendTrafficMessage(data.getMessage());
+        };
+    }
+
+    private DataListener<WebsocketMessage> onEmergencyReceived() {
+        return (senderClient, data, ackSender) -> {
+            log.info("Received emergency message: {}", data);
+            socketService.sendEmergencyMessage(data.getMessage());
+        };
+    }
+
+    private DataListener<WebsocketMessage> onAccidentReceived() {
+        return (senderClient, data, ackSender) -> {
+            log.info("Received accident message: {}", data);
+            socketService.sendAccidentMessage(data.getMessage());
         };
     }
 
@@ -34,7 +58,7 @@ public class SocketModule {
         return (client) -> {
             String room = client.getHandshakeData().getSingleUrlParam("room");
             client.joinRoom(room);
-            log.info("Socket ID[{}]  Connected to socket", client.getSessionId().toString());
+            log.info("Socket ID[{}] Connected to socket", client.getSessionId().toString());
         };
     }
 
@@ -43,5 +67,4 @@ public class SocketModule {
             log.info("Client[{}] - Disconnected from socket", client.getSessionId().toString());
         };
     }
-
 }

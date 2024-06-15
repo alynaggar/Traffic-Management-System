@@ -33,6 +33,7 @@ public class SecurityConfiguration {
                         "/user/register"
                         ,"/user/authenticate"
                         ,"/user/otp/**"
+                        ,"/**"
                 )
                 .permitAll()
                 .anyRequest()

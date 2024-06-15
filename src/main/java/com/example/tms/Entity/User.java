@@ -17,8 +17,16 @@ public class User implements UserDetails {
 
     @Column(unique = true)
     private String username;
+    @Column
+    private String name;
     @Column(nullable = false)
     private String password;
+    @Column(unique = true)
+    private String email;
+    @Column
+    private String otp;
+    @Transient
+    private String roleName;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Role role;
@@ -26,10 +34,14 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(long id, String username, String password, Role role) {
+    public User(long id, String username, String name, String password, String email, String otp, String roleName, Role role) {
         this.id = id;
         this.username = username;
+        this.name = name;
         this.password = password;
+        this.email = email;
+        this.otp = otp;
+        this.roleName = roleName;
         this.role = role;
     }
 
@@ -99,4 +111,35 @@ public class User implements UserDetails {
         this.role = role;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
 }

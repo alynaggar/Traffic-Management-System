@@ -1,6 +1,5 @@
 package com.example.tms.Controller;
 
-import com.example.tms.DTO.RolePrivilegeDTO;
 import com.example.tms.Entity.Response.CustomResponseEntity;
 import com.example.tms.Entity.Role;
 import com.example.tms.Service.RoleService;
@@ -24,11 +23,6 @@ public class RoleController {
     @PostMapping("/create")
     public CustomResponseEntity<?> createRole(@RequestBody Role role){
         return roleService.createRole(role);
-    }
-
-    @PostMapping("/privilege")
-    public CustomResponseEntity<?> linkPrivilege(@RequestBody RolePrivilegeDTO rolePrivilegeDto){
-        return roleService.linkPrivilege(rolePrivilegeDto);
     }
 
 }
