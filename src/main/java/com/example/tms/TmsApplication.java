@@ -1,10 +1,5 @@
 package com.example.tms;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-import com.corundumstudio.socketio.Configuration;
-import com.corundumstudio.socketio.SocketIOServer;
-import com.example.tms.Entity.Camera;
-import com.example.tms.WebSocket.SocketService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

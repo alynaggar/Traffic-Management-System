@@ -13,6 +13,8 @@ public class Location {
 
     private String name;
 
+    private String url;
+
     @Enumerated(EnumType.STRING)
     private Status status = Status.UP;
 
@@ -20,7 +22,7 @@ public class Location {
 
     private double latitude;
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
     private List<Camera> cameras;
 
     public Location() {
@@ -31,9 +33,10 @@ public class Location {
         this.name = name;
     }
 
-    public Location(long id, String name, Status status, double longitude, double latitude, List<Camera> cameras) {
+    public Location(long id, String name, String url, Status status, double longitude, double latitude, List<Camera> cameras) {
         this.id = id;
         this.name = name;
+        this.url = url;
         this.status = status;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -86,5 +89,13 @@ public class Location {
 
     public void setCameras(List<Camera> cameras) {
         this.cameras = cameras;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

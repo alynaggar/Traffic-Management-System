@@ -17,8 +17,18 @@ public class ModelController {
         this.modelService = modelService;
     }
 
-    @PostMapping("/predict")
-    public CustomResponseEntity<?> predict(@RequestBody String path){
-        return modelService.predict(path);
+    @PostMapping("/traffic")
+    public CustomResponseEntity<?> trafficPredict(@RequestBody String path){
+        return modelService.trafficPredict(path);
+    }
+
+    @PostMapping("/accident")
+    public CustomResponseEntity<?> accidentPredict(@RequestBody String path){
+        return modelService.accidentPredict(path);
+    }
+
+    @PostMapping("/emergency/audio")
+    public CustomResponseEntity<?> emergencyAudioPredict(@RequestBody String path){
+        return modelService.emergencyAudioPredict(path);
     }
 }

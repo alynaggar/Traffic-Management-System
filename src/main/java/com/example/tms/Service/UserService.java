@@ -1,8 +1,5 @@
 package com.example.tms.Service;
 
-import java.util.List;
-import java.util.Random;
-
 import com.example.tms.Configuration.EmailEvent;
 import com.example.tms.DTO.UserDTO;
 import com.example.tms.Entity.Response.CustomResponseCode;
@@ -18,7 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class UserService {
